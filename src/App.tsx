@@ -35,7 +35,7 @@ function App() {
   };
 
   const toggleTodo = (index: number) => {
-    const originalIndex = todos.findIndex((todo, i) => {
+    const originalIndex = todos.findIndex((todo) => {
       const filteredIndex = filteredTodos.findIndex(ft => ft === todo);
       return filteredIndex === index;
     });
