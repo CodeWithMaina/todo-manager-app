@@ -30,7 +30,7 @@ function App() {
     if (newTodo.trim()) {
       setTodos([...todos, { isChecked: false, todo: newTodo }]);
       setNewTodo("");
-      setShowAddTodo(false);
+      setShowAddTodo(true);
     }
   };
 
