@@ -3,7 +3,7 @@ import "./App.css";
 import type { TODO } from "./types/types";
 import { initialTodo } from "./data/data";
 import CardComponent from "./components/CardComponent";
-
+import sun from "./assets/sun.png";
 
 function App() {
   const [todos, setTodos] = useState<TODO[]>([]);
@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     setLoading(true);
     setTodos(initialTodo);
-    setError('');
+    setError("");
     setLoading(false);
   }, []);
 
@@ -36,13 +36,14 @@ function App() {
 
   const toggleTodo = (index: number) => {
     const originalIndex = todos.findIndex((todo) => {
-      const filteredIndex = filteredTodos.findIndex(ft => ft === todo);
+      const filteredIndex = filteredTodos.findIndex((ft) => ft === todo);
       return filteredIndex === index;
     });
-    
+
     if (originalIndex !== -1) {
       const updatedTodos = [...todos];
-      updatedTodos[originalIndex].isChecked = !updatedTodos[originalIndex].isChecked;
+      updatedTodos[originalIndex].isChecked =
+        !updatedTodos[originalIndex].isChecked;
       setTodos(updatedTodos);
     }
   };
@@ -53,8 +54,11 @@ function App() {
   return (
     <div className="container">
       <div className="main-container">
-        <h1 className="main-title">TODO</h1>
-        
+        <div className="header">
+          <h1 className="main-title">TODO</h1>
+          <img src={sun} alt="Sun" height="50px" />
+        </div>
+
         <div className="create-todo-checkbox">
           <input
             type="checkbox"
@@ -100,19 +104,19 @@ function App() {
               <span>{todos.filter((t) => !t.isChecked).length} items left</span>
             </div>
             <div className="footer-center">
-              <button 
+              <button
                 className={filter === "all" ? "active" : ""}
                 onClick={() => setFilter("all")}
               >
                 All
               </button>
-              <button 
+              <button
                 className={filter === "active" ? "active" : ""}
                 onClick={() => setFilter("active")}
               >
                 Active
               </button>
-              <button 
+              <button
                 className={filter === "completed" ? "active" : ""}
                 onClick={() => setFilter("completed")}
               >
@@ -120,16 +124,16 @@ function App() {
               </button>
             </div>
             <div className="footer-right">
-              <button onClick={() => setTodos(todos.filter((t) => !t.isChecked))}>
+              <button
+                onClick={() => setTodos(todos.filter((t) => !t.isChecked))}
+              >
                 Clear Completed
               </button>
             </div>
           </div>
         </div>
 
-        <div className="todo-hint">
-          Drag and drop to reorder list
-        </div>
+        <div className="todo-hint">Drag and drop to reorder list</div>
       </div>
     </div>
   );
